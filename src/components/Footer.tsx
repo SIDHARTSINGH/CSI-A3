@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
 
-import AppStoreBadge from "../assets/AppStore.jpg";
+import AppStoreBadge from "../assets/DownloadAppStore.jpg";
 import PlayStoreBadge from "../assets/DownloadPlayStore.jpg";
 
 const ListHeader = ({ children }: { children: ReactNode }) => {
