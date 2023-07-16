@@ -4,9 +4,10 @@ import {
   Button,
   Card,
   CardBody,
-  Image,
   Heading,
   CardFooter,
+  CardHeader,
+  Icon,
 } from "@chakra-ui/react";
 import { category } from "../data/categories";
 
@@ -14,22 +15,17 @@ interface Props {
   category: category;
 }
 
-export default function Pricing({ category }: Props) {
+const CategoryCard = ({ category }: Props) => {
   return (
-    <Card>
-      <CardBody>
-        <Image
-          src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-          alt="Green double couch with wooden legs"
-          borderRadius="lg"
-        />
-        <Stack mt="6" spacing="3">
+    <Card align={"center"} p={2}>
+      <CardHeader p={2}>
+        <Stack alignItems={"center"}>
+          <Icon as={category.icon} boxSize={"20"} />
           <Heading size="md">{category.name}</Heading>
-          <Text>{category.description}</Text>
-          <Text color="blue.600" fontSize="2xl">
-            $450
-          </Text>
         </Stack>
+      </CardHeader>
+      <CardBody padding={2}>
+        <Text>{category.description}</Text>
       </CardBody>
       <CardFooter>
         <Button variant="solid" colorScheme="blue">
@@ -38,4 +34,6 @@ export default function Pricing({ category }: Props) {
       </CardFooter>
     </Card>
   );
-}
+};
+
+export default CategoryCard;

@@ -6,7 +6,7 @@ const CardGrid = () => {
   return (
     <>
       <Box py={10}>
-        <Heading textAlign={"center"}>Different Tracks Available</Heading>
+        <Heading textAlign={"center"}>Categories</Heading>
         <SimpleGrid columns={{ sm: 1, md: 2, lg: 3 }} spacing={6} py={5}>
           {category.map((c) => (
             <CategoryCard key={c.id} category={c} />
