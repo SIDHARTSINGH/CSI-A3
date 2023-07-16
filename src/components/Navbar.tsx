@@ -21,7 +21,7 @@ import {
 import { HamburgerIcon, CloseIcon, MoonIcon } from "@chakra-ui/icons";
 import { MdSunny } from "react-icons/md";
 
-const Links = ["Dashboard", "Projects", "Team"];
+const Links = ["Home", "About", "Contact Us"];
 
 const NavLink = ({ children }: { children: ReactNode }) => (
   <Link
