@@ -37,7 +37,7 @@ const About = () => {
             flex={1}
             color={"gray.400"}
             justify={{ lg: "center" }}
-            py={{ base: 4, md: 20, xl: 60 }}
+            py={{ base: 4, md: 20, lg: 28 }}
           >
             <Box mb={{ base: 8, md: 20 }}>
               <Text

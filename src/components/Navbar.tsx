@@ -3,7 +3,6 @@ import {
   Box,
   Flex,
   HStack,
-  Link,
   IconButton,
   Button,
   Menu,
@@ -20,23 +19,35 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, MoonIcon } from "@chakra-ui/icons";
 import { MdSunny } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Links = ["Home", "About", "Contact Us"];
 
-const NavLink = ({ children }: { children: ReactNode }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={"md"}
-    _hover={{
-      textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
-    }}
-    href={"#"}
-  >
-    {children}
-  </Link>
-);
+const NavLink = ({ children: label }: { children: ReactNode }) => {
+  const linkTo =
+    label === "Home"
+      ? ""
+      : label === "About"
+      ? "about"
+      : label === "Contact Us"
+      ? "contact-us"
+      : label;
+
+  return (
+    <Text
+      px={2}
+      py={1}
+      rounded={"md"}
+      _hover={{
+        textDecoration: "none",
+        bg: useColorModeValue("gray.200", "gray.700"),
+      }}
+    >
+      {/* Using react-router-dom link to avoid rerender on same page reload */}
+      <Link to={"/" + linkTo}>{label}</Link>
+    </Text>
+  );
+};
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -85,10 +96,10 @@ export default function Navbar() {
               </MenuButton>
 
               <MenuList>
-                <MenuItem>Link 1</MenuItem>
-                <MenuItem>Link 2</MenuItem>
+                <MenuItem>Profile</MenuItem>
+                <MenuItem>Settings</MenuItem>
                 <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
+                <MenuItem>Log Out</MenuItem>
               </MenuList>
             </Menu>
           </Flex>
