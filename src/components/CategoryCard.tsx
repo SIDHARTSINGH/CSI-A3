@@ -10,6 +10,7 @@ import {
   Icon,
 } from "@chakra-ui/react";
 import { category } from "../data/categories";
+import { Link } from "react-router-dom";
 
 interface Props {
   category: category;
@@ -29,7 +30,7 @@ const CategoryCard = ({ category }: Props) => {
       </CardBody>
       <CardFooter>
         <Button variant="solid" colorScheme="blue">
-          Explore
+          <Link to={"/courses"}>Explore</Link>
         </Button>
       </CardFooter>
     </Card>

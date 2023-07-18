@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import {
   Box,
   Flex,
@@ -20,6 +20,7 @@ import {
 import { HamburgerIcon, CloseIcon, MoonIcon } from "@chakra-ui/icons";
 import { MdSunny } from "react-icons/md";
 import { Link } from "react-router-dom";
+import useAuthStore from "../store";
 
 const Links = ["Home", "About", "Contact Us"];
 
@@ -52,6 +53,8 @@ const NavLink = ({ children: label }: { children: ReactNode }) => {
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
+
+  const isLoggedIn = useAuthStore((s) => s.isLoggedIn);
 
   return (
     <>
@@ -88,18 +91,36 @@ export default function Navbar() {
             </Box>
             <Menu>
               <MenuButton>
-                <Avatar
-                  size="sm"
-                  name="Sidhart Singh"
-                  src="https://bit.ly/broken-link"
-                />
+                {isLoggedIn ? (
+                  <Avatar
+                    size="sm"
+                    name="Sidhart Singh"
+                    src="https://bit.ly/broken-link"
+                  />
+                ) : (
+                  <Avatar size="sm" />
+                )}
               </MenuButton>
 
               <MenuList>
-                <MenuItem>Profile</MenuItem>
-                <MenuItem>Settings</MenuItem>
-                <MenuDivider />
-                <MenuItem>Log Out</MenuItem>
+                {isLoggedIn ? (
+                  <React.Fragment>
+                    <MenuItem>Profile</MenuItem>
+                    <MenuItem>Settings</MenuItem>
+                    <MenuDivider />
+                    <MenuItem>Log Out</MenuItem>
+                  </React.Fragment>
+                ) : (
+                  <React.Fragment>
+                    <MenuItem>
+                      <Link to={"/sign-up"}>Sign Up</Link>
+                    </MenuItem>
+                    <MenuDivider />
+                    <MenuItem>
+                      <Link to={"/sign-in"}>Sign In</Link>
+                    </MenuItem>
+                  </React.Fragment>
+                )}
               </MenuList>
             </Menu>
           </Flex>
