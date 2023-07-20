@@ -55,6 +55,11 @@ export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
 
   const isLoggedIn = useAuthStore((s) => s.isLoggedIn);
+  const setLoggedOut = useAuthStore((s) => s.setLoggedOut);
+  const handleLogout = () => {
+    console.log("logging out");
+    setLoggedOut();
+  };
 
   return (
     <>
@@ -108,16 +113,23 @@ export default function Navbar() {
                     <MenuItem>Profile</MenuItem>
                     <MenuItem>Settings</MenuItem>
                     <MenuDivider />
-                    <MenuItem>Log Out</MenuItem>
+                    <MenuItem onClick={handleLogout}>Log Out</MenuItem>
                   </React.Fragment>
                 ) : (
                   <React.Fragment>
-                    <MenuItem>
-                      <Link to={"/sign-up"}>Sign Up</Link>
+                    <MenuItem as={Link} to={"/sign-up"}>
+                      Sign Up
                     </MenuItem>
                     <MenuDivider />
-                    <MenuItem>
-                      <Link to={"/sign-in"}>Sign In</Link>
+                    {/* 
+                      // Only the text acts as a Link not the whole menu item :
+                      <MenuItem>
+                        <Link to={"/sign-in"}>Sign In</Link>
+                      </MenuItem> 
+                      // So, use menuitem as a Link using 'as' prop 
+                    */}
+                    <MenuItem as={Link} to={"/sign-in"}>
+                      Sign In
                     </MenuItem>
                   </React.Fragment>
                 )}
